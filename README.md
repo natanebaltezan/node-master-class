@@ -9,3 +9,11 @@
 - Section 6: Gaining Stability
 - Section 7: Gaining Performance
 - Section 8: Loose Ends
+
+
+## Start application
+### Default environment (STAGING):
+`node index.js`
+
+### To pass the environment (PRODUCTION):
+`NODE_ENV=production node index.js`
