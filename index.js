@@ -38,7 +38,9 @@ let unifiedServer = function (req, res) {
 
   // Get the path
   let path = parsedUrl.pathname;
-  let trimmedPath = path.replace(/^\+|\/+$/g, '');
+  console.log('path', path);
+  let trimmedPath = path.replace(/^\/+|\/+$/g, '');
+  console.log('trimmedPath', trimmedPath);
 
   // Get the query string as an object
   let queryStringObject = parsedUrl.query;
@@ -95,18 +97,18 @@ let unifiedServer = function (req, res) {
 // Define the handlers
 let handlers = {};
 
-// Sample handler
-handlers.sample = function (data, callback) {
-  // callback a htttp status code and a payload object
-  callback(406, { 'name': 'sample handler' });
+// Ping handler
+handlers.ping = function (data, callback) {
+  callback(200);
 };
 
 // Not found handler
 handlers.notFound = function (data, callback) {
+  console.log('data', data);
   callback(404);
 };
 
 // Define a request router
 let router = {
-  'sample': handlers.sample
+  'ping': handlers.ping
 };
