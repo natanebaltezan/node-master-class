@@ -4,66 +4,29 @@ const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./lib/config');
 const fs = require('fs');
-var handlers = require('./lib/handlers');
-var helpers = require('./lib/helpers');
+const handlers = require('./lib/handlers');
+const helpers = require('./lib/helpers');
 
-// Instantiate the HTTP server
-const httpServer = http.createServer(function (req, res) {
-  unifiedServer(req, res);
-});
-
-// Start the HTTP server
-httpServer.listen(config.httpPort, function () {
-  console.log(`The server is listening on port ${config.httpPort} in ${config.envName} mode`);
-});
-
-// Instantiate the HTTPS server
-let httpsServerOptions = {
-  'key': fs.readFileSync('./https/key.pem'),
-  'cert': fs.readFileSync('./https/cert.pem')
-};
-const httpsServer = https.createServer(httpsServerOptions, function (req, res) {
-  unifiedServer(req, res);
-});
-
-// Start the HTTPS server
-httpsServer.listen(config.httpsPort, function () {
-  console.log(`The server is listening on port ${config.httpsPort} in ${config.envName} mode`);
-});
-
-// All the server logic for both http and htttps server
-let unifiedServer = function (req, res) {
-
-  // Get the URL and parse it
-  let parsedUrl = url.parse(req.url, true);
-
-  // Get the path
-  let path = parsedUrl.pathname;
-  let trimmedPath = path.replace(/^\/+|\/+$/g, '');
-
-  // Get the query string as an object
-  let queryStringObject = parsedUrl.query;
-
-  // HTTP method is one of the objects available on the req object
-  let method = req.method.toLowerCase();
-
-  // Get the header as an object
-  let headers = req.headers;
-
-  // Get the payload, if any
-  let decoder = new StringDecoder('utf-8');
+const unifiedServer = (req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  const path = parsedUrl.pathname;
+  const trimmedPath = path.replace(/^\/+|\/+$/g, '');
+  const queryStringObject = parsedUrl.query;
+  const method = req.method.toLowerCase();
+  const headers = req.headers;
+  const decoder = new StringDecoder('utf-8');
   let buffer = '';
-  req.on('data', function (data) {
+  req.on('data', (data) => {
     buffer += decoder.write(data);
   });
-  req.on('end', function () {
+  req.on('end', () => {
     buffer += decoder.end();
 
     // Choose the handler this request should go
-    let chosenHandler = typeof (router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
+    const chosenHandler = typeof (router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
 
     // Construct the data object to send to the handler
-    let data = {
+    const data = {
       'trimmedPath': trimmedPath,
       'queryStringObject': queryStringObject,
       'method': method,
@@ -72,7 +35,7 @@ let unifiedServer = function (req, res) {
     };
 
     // Route the request to the handler specified in the router
-    chosenHandler(data, function (statusCode, payload) {
+    chosenHandler(data, (statusCode, payload) => {
       // Use the status code called back by the handler or default to 200
       statusCode = typeof (statusCode) == 'number' ? statusCode : 200;
 
@@ -80,7 +43,7 @@ let unifiedServer = function (req, res) {
       payload = typeof (payload) == 'object' ? payload : {};
 
       // Convert the payload to a string
-      let payloadString = JSON.stringify(payload);
+      const payloadString = JSON.stringify(payload);
 
       // Return the response
       res.setHeader('Content-Type', 'application/json');
@@ -93,7 +56,26 @@ let unifiedServer = function (req, res) {
   });
 };
 
-// Define the request router
+// Instantiate the HTTP server
+const httpServer = http.createServer((req, res) => {
+  unifiedServer(req, res);
+});
+httpServer.listen(config.httpPort, () => {
+  console.log(`The server is listening on port ${config.httpPort} in ${config.envName} mode`);
+});
+
+const httpsServerOptions = {
+  'key': fs.readFileSync('./https/key.pem'),
+  'cert': fs.readFileSync('./https/cert.pem')
+};
+// Instantiate the HTTP server
+const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
+  unifiedServer(req, res);
+});
+httpsServer.listen(config.httpsPort, () => {
+  console.log(`The server is listening on port ${config.httpsPort} in ${config.envName} mode`);
+});
+
 var router = {
   'ping': handlers.ping,
   'users': handlers.users,

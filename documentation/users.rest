@@ -1,13 +1,13 @@
-@url = http://localhost:3000
-@phoneNumber = 1234567890
+@url = http://localhost:3000/users
 
 ### Get users
-GET {{url}}/users?phone={{phoneNumber}}
+@phoneNumber = 1234567890
+GET {{url}}?phone={{phoneNumber}}
  content-type: application/json 
  Cache-Control: no-cache
 
 ### Post users
-POST {{url}}/users/
+POST {{url}}
  content-type: application/json 
  Cache-Control: no-cache
 
@@ -20,7 +20,7 @@ POST {{url}}/users/
 }
 
 ### Put users
-PUT {{url}}/users
+PUT {{url}}
  content-type: application/json 
  Cache-Control: no-cache
 
@@ -32,6 +32,6 @@ PUT {{url}}/users
 }
 
 ### Delete users
-DELETE {{url}}/users?phone=1112223334
+DELETE {{url}}?phone=1112223334
  content-type: application/json 
  Cache-Control: no-cache

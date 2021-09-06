@@ -1,0 +1,16 @@
+@url = http://localhost:3000/tokens
+### Post token
+POST {{url}}/
+ content-type: application/json 
+ Cache-Control: no-cache
+
+{
+  "phone": "1112223334",
+  "password": "quituti"
+}
+
+### Get token
+@id = 49ugncligy6wpv2uf18t
+GET {{url}}?id={{id}}
+ content-type: application/json 
+ Cache-Control: no-cache
