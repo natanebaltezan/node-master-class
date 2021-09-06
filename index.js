@@ -7,8 +7,6 @@ const fs = require('fs');
 var handlers = require('./lib/handlers');
 var helpers = require('./lib/helpers');
 
-
-
 // Instantiate the HTTP server
 const httpServer = http.createServer(function (req, res) {
   unifiedServer(req, res);
@@ -41,9 +39,7 @@ let unifiedServer = function (req, res) {
 
   // Get the path
   let path = parsedUrl.pathname;
-  console.log('path', path);
   let trimmedPath = path.replace(/^\/+|\/+$/g, '');
-  console.log('trimmedPath', trimmedPath);
 
   // Get the query string as an object
   let queryStringObject = parsedUrl.query;
@@ -99,6 +95,7 @@ let unifiedServer = function (req, res) {
 
 // Define the request router
 var router = {
-  'ping' : handlers.ping,
-  'users' : handlers.users
+  'ping': handlers.ping,
+  'users': handlers.users,
+  'tokens': handlers.tokens
 };

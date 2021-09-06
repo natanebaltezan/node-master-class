@@ -1,0 +1,37 @@
+@url = http://localhost:3000
+@phoneNumber = 1234567890
+
+### Get users
+GET {{url}}/users?phone={{phoneNumber}}
+ content-type: application/json 
+ Cache-Control: no-cache
+
+### Post users
+POST {{url}}/users/
+ content-type: application/json 
+ Cache-Control: no-cache
+
+{
+  "firstName": "Xablaus",
+  "lastName": "Baltezan",
+  "phone": "1112223334",
+  "password": "quituti",
+  "tosAgreement": true
+}
+
+### Put users
+PUT {{url}}/users
+ content-type: application/json 
+ Cache-Control: no-cache
+
+{
+  "firstName": "Xablaus",
+  "lastName": "S. Baltezan",
+  "phone": "1112223334",
+  "password": "quituti"
+}
+
+### Delete users
+DELETE {{url}}/users?phone=1112223334
+ content-type: application/json 
+ Cache-Control: no-cache
