@@ -1,10 +1,12 @@
 @url = http://localhost:3000/users
 
 ### Get users
-@phoneNumber = 1234567890
+@phoneNumber = 1112223334
+@token = gix2jxts3sg5vs7p5ht4
 GET {{url}}?phone={{phoneNumber}}
  content-type: application/json 
  Cache-Control: no-cache
+ token: {{token}}
 
 ### Post users
 POST {{url}}

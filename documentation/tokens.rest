@@ -10,7 +10,22 @@ POST {{url}}/
 }
 
 ### Get token
-@id = 49ugncligy6wpv2uf18t
+@id = elok8rnvagxs5vjbd43h
 GET {{url}}?id={{id}}
+ content-type: application/json 
+ Cache-Control: no-cache
+
+### Get token
+PUT {{url}}
+ content-type: application/json 
+ Cache-Control: no-cache
+
+ {
+   "id": "m2bwfarl0vh8c8hi4ro2",
+   "extend": true
+ }
+
+### Delete users
+DELETE {{url}}?id=5jvxbihchw25w1qa5nn5
  content-type: application/json 
  Cache-Control: no-cache
