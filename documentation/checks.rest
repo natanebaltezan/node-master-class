@@ -1,0 +1,10 @@
+@url = http://localhost:3000/checks
+### Post checks
+POST {{url}}/
+ content-type: application/json 
+ Cache-Control: no-cache
+
+{
+  "phone": "1112223334",
+  "password": "quituti"
+}
