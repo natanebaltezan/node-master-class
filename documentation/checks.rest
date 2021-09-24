@@ -3,8 +3,12 @@
 POST {{url}}/
  content-type: application/json 
  Cache-Control: no-cache
+ token: o4xsglo1tvpdiafs6th0
 
 {
-  "phone": "1112223334",
-  "password": "quituti"
+  "protocol": "http",
+  "url": "google.com",
+  "method":"get",
+  "successCodes": [200,201],
+  "timeoutSeconds": 3
 }

@@ -1,7 +1,1 @@
-{
-  "firstName": "Xablaus",
-  "lastName": "Baltezan",
-  "phone": "1112223334",
-  "hashedPassword": "5836a5dea26e0161be64083d55187093bcba5f254b2b9075ba25112b99659212",
-  "tosAgreement": true
-}
+{"firstName":"Xablaus","lastName":"Baltezan","phone":"1112223334","hashedPassword":"5836a5dea26e0161be64083d55187093bcba5f254b2b9075ba25112b99659212","tosAgreement":true,"checks":["v7ss0ybdrke58j4e17pz"]}
