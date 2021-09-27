@@ -3,7 +3,7 @@
 POST {{url}}/
  content-type: application/json 
  Cache-Control: no-cache
- token: o4xsglo1tvpdiafs6th0
+ token: zvx09glbbza7rsgnfecg
 
 {
   "protocol": "http",
@@ -12,3 +12,34 @@ POST {{url}}/
   "successCodes": [200,201],
   "timeoutSeconds": 3
 }
+
+
+### Get check
+@id = tterfsf7r1i6zhb2fqrw
+GET {{url}}?id={{id}}
+ content-type: application/json 
+ Cache-Control: no-cache
+ token: usmb0m1eio5gxxq6ti9x
+
+
+### Put Check
+PUT {{url}}
+ content-type: application/json 
+ Cache-Control: no-cache
+ token: usmb0m1eio5gxxq6ti9x
+
+{
+  "id":"tterfsf7r1i6zhb2fqrw",
+  "protocol": "https",
+  "url": "yahoo.com",
+  "method":"put",
+  "successCodes": [200,201,403],
+  "timeoutSeconds": 2
+}
+
+### Delete check
+@id = 2dfn4c4a43zelkllxs0j
+DELETE {{url}}?id={{id}}
+ content-type: application/json 
+ Cache-Control: no-cache
+ token: zvx09glbbza7rsgnfecg

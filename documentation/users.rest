@@ -2,7 +2,7 @@
 
 ### Get users
 @phoneNumber = 1112223334
-@token = gix2jxts3sg5vs7p5ht4
+@token = b42vz4pxcw47w0hmrp24
 GET {{url}}?phone={{phoneNumber}}
  content-type: application/json 
  Cache-Control: no-cache
@@ -14,9 +14,9 @@ POST {{url}}
  Cache-Control: no-cache
 
 {
-  "firstName": "Xablaus",
-  "lastName": "Baltezan",
-  "phone": "1112223334",
+  "firstName": "Xablaus2",
+  "lastName": "Baltezan2",
+  "phone": "1112223388",
   "password": "quituti",
   "tosAgreement": true
 }
@@ -27,13 +27,14 @@ PUT {{url}}
  Cache-Control: no-cache
 
 {
-  "firstName": "Xablaus",
-  "lastName": "S. Baltezan",
-  "phone": "1112223334",
+  "firstName": "Xablaus2",
+  "lastName": "S. Baltezan2",
+  "phone": "5551234567",
   "password": "quituti"
 }
 
 ### Delete users
-DELETE {{url}}?phone=1112223334
+DELETE {{url}}?phone=1112223388
  content-type: application/json 
  Cache-Control: no-cache
+ token: b42vz4pxcw47w0hmrp24

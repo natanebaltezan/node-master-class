@@ -5,12 +5,12 @@ POST {{url}}/
  Cache-Control: no-cache
 
 {
-  "phone": "1112223334",
+  "phone": "1112223388",
   "password": "quituti"
 }
 
 ### Get token
-@id = elok8rnvagxs5vjbd43h
+@id = a67i50q3kjbu41f1se0u
 GET {{url}}?id={{id}}
  content-type: application/json 
  Cache-Control: no-cache
