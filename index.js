@@ -22,10 +22,8 @@ const unifiedServer = (req, res) => {
   req.on('end', () => {
     buffer += decoder.end();
 
-    // Choose the handler this request should go
     const chosenHandler = typeof (router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
 
-    // Construct the data object to send to the handler
     const data = {
       'trimmedPath': trimmedPath,
       'queryStringObject': queryStringObject,
@@ -34,29 +32,25 @@ const unifiedServer = (req, res) => {
       'payload': helpers.parseJsonToObject(buffer)
     };
 
-    // Route the request to the handler specified in the router
     chosenHandler(data, (statusCode, payload) => {
-      // Use the status code called back by the handler or default to 200
       statusCode = typeof (statusCode) == 'number' ? statusCode : 200;
-
-      // Use thepayload called back by the handler or default to an empty object
       payload = typeof (payload) == 'object' ? payload : {};
 
-      // Convert the payload to a string
       const payloadString = JSON.stringify(payload);
 
-      // Return the response
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(statusCode);
       res.end(payloadString);
 
-      // Log the request
       console.log(`Returning this response | Status code: ${statusCode} | Payload: ${payloadString}`);
     });
   });
 };
 
-// Instantiate the HTTP server
+// helpers.sendTwilioSms('4158375309', 'xablaus123', (err) => {
+//   console.log('erro: ', err);
+// });
+
 const httpServer = http.createServer((req, res) => {
   unifiedServer(req, res);
 });
@@ -68,7 +62,7 @@ const httpsServerOptions = {
   'key': fs.readFileSync('./https/key.pem'),
   'cert': fs.readFileSync('./https/cert.pem')
 };
-// Instantiate the HTTP server
+
 const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
   unifiedServer(req, res);
 });
